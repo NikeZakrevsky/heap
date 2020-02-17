@@ -12,7 +12,38 @@ public class Heap {
         if (!isDataOk()) repairToUp();
     }
 
+    public Node get() {
+        Node result = nodes.get(0);
+
+        nodes.set(0, nodes.get(nodes.size() - 1));
+        nodes.remove(nodes.size() - 1);
+
+        repairToDown();
+
+        return result;
+    }
+
     public void repairToDown() {
+        Node currentNode = nodes.get(0);
+        Node minNode = getMinChild(currentNode);
+
+        while (minNode != null || (minNode != null && currentNode.getFrequency() > minNode.getFrequency())) {
+            swapNodes(minNode, currentNode);
+            minNode = getMinChild(currentNode);
+        }
+        nodes.forEach(node -> System.out.println(node.getFrequency()));
+    }
+
+    private Node getMinChild(Node node) {
+        int index = nodes.indexOf(node);
+        Node leftChild = index * 2 + 1 < nodes.size() ? nodes.get(index * 2 + 1) : null;
+        Node rightChild = index * 2 + 2 < nodes.size() ? nodes.get(index * 2 + 2) : null;
+
+        if (leftChild != null && rightChild != null) {
+            return leftChild.getFrequency() < rightChild.getFrequency()? leftChild: rightChild;
+        } else if (leftChild == null) {
+            return rightChild;
+        } else return leftChild;
 
     }
 

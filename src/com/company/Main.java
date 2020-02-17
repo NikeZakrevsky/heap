@@ -14,5 +14,8 @@ public class Main {
         heap.insert(new Node(53));
         heap.insert(new Node(22));
         heap.insert(new Node(5));
+
+        Node node = heap.get();
+        System.out.println(node);
     }
 }
