@@ -1,21 +1,19 @@
 package com.company;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Heap heap = new Heap();
-        heap.insert(new Node(4));
-        heap.insert(new Node(18));
-        heap.insert(new Node(7));
-        heap.insert(new Node(20));
-        heap.insert(new Node(21));
-        heap.insert(new Node(18));
-        heap.insert(new Node(42));
-        heap.insert(new Node(53));
-        heap.insert(new Node(22));
-        heap.insert(new Node(5));
-
-        Node node = heap.get();
-        System.out.println(node);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        long n = Long.parseLong(reader.readLine());
+        for (long i = 0; i < n; i++) {
+            String[] command = reader.readLine().split(" ");
+            if (command[0].equals("Insert")) heap.insert(new Node(Long.parseLong(command[1])));
+            if (command[0].equals("ExtractMax")) System.out.println(heap.get().getFrequency());
+        }
     }
 }

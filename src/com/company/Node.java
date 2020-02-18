@@ -1,14 +1,14 @@
 package com.company;
 
 public class Node {
-    private int frequency;
+    private long frequency;
     private char value = '0';
 
-    public Node(int frequency) {
+    public Node(long frequency) {
         this.frequency = frequency;
     }
 
-    public int getFrequency() {
+    public long getFrequency() {
         return frequency;
     }
 
